@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mqservicetest
+  namespace: amq
+  selfLink: /api/v1/namespaces/amq/replicationcontrollers/mqservicetest
+  uid: d01d310f-a0fa-11e6-93a8-5254009f9a8b
+  resourceVersion: '24185'
+  generation: 1
+  creationTimestamp: '2016-11-02T12:49:37Z'
+  labels:
+    component: mqservicetest
+    container: java
+    group: quickstarts
+    project: mqservicetest
+    provider: fabric8
+    version: 0.0.1-SNAPSHOT
+spec:
+  replicas: 1
+  selector:
+    component: mqservicetest
+    container: java
+    group: quickstarts
+    project: mqservicetest
+    provider: fabric8
+    version: 0.0.1-SNAPSHOT
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        component: mqservicetest
+        container: java
+        group: quickstarts
+        project: mqservicetest
+        provider: fabric8
+        version: 0.0.1-SNAPSHOT
+    spec:
+      containers:
+        -
+          name: mqservicetest
+          image: 'fabric8/mqservicetest:0.0.1-SNAPSHOT'
+          ports:
+            -
+              name: jolokia
+              containerPort: 8778
+              protocol: TCP
+          env:
+            -
+              name: A_MQ_SERVICE_NAME
+              value: broker
+            -
+              name: KUBERNETES_NAMESPACE
+              valueFrom: { fieldRef: { apiVersion: v1, fieldPath: metadata.namespace } }
+          resources: {  }
+          terminationMessagePath: /dev/termination-log
+          imagePullPolicy: IfNotPresent
+          securityContext: {  }
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {  }
+status:
+  replicas: 1
+  fullyLabeledReplicas: 1
+  observedGeneration: 1
+causes: []

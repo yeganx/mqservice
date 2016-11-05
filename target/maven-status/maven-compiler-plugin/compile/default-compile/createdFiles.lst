@@ -1,0 +1,4 @@
+com/redhat/mqservicetest/mq/ActiveMQConfig.class
+com/redhat/mqservicetest/ActiveMQComponentFactory.class
+com/redhat/mqservicetest/mq/ActiveMQConfigurer.class
+com/redhat/mqservicetest/MyRoutes.class
